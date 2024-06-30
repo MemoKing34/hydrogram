@@ -17,7 +17,8 @@
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with Hydrogram.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "0.1.4"
+from hydrogram._version import __version__, __version_tuple__
+
 __license__ = "GNU Lesser General Public License v3.0 (LGPL-3.0)"
 __copyright__ = "Copyright (C) 2023-present Hydrogram <https://hydrogram.org>"
 
@@ -58,6 +59,8 @@ __all__ = [
     "ContinuePropagation",
     "StopPropagation",
     "StopTransmission",
+    "__version__",
+    "__version_tuple__",
     "compose",
     "crypto_executor",
     "enums",

@@ -32,7 +32,10 @@ classifiers = [
 keywords = ["telegram chat messenger mtproto api client library python"]
 
 [tool.hatch.version]
-path = "hydrogram/__init__.py"
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "hydrogram/_version.py"
 
 # Used to call hatch_build.py
 [tool.hatch.build.hooks.custom]
@@ -45,7 +48,7 @@ source = "https://github.com/hydrogram/hydrogram"
 documentation = "https://docs.hydrogram.org"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.rye]

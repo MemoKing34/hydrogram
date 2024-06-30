@@ -6,6 +6,7 @@ unknown_errors.txt
 .DS_Store
 
 # Hydrogram generated code
+hydrogram/_version.py
 hydrogram/errors/exceptions/
 hydrogram/raw/functions/
 hydrogram/raw/types/
