@@ -120,7 +120,7 @@ def create_patch(repo: Repo, formatted_origin_branch: str, target_branch: str) -
 def apply_patch_to_formatted(repo: Repo, formatted_origin_branch: str, patch_path: Path):
     repo.git.switch(formatted_origin_branch, quiet=True)
     print("Applying patch…")
-    repo.git.apply(patch_path)
+    repo.git.apply(patch_path, allow_empty=True)
     repo.git.add(all=True)
     repo.git.rm("pyproject.toml", cached=True)
     repo.index.commit("patch")
