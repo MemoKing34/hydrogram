@@ -42,7 +42,7 @@
       "desc": "Represents a list of bot mini apps that can be launched from the attachment menu \u00bb",
       "params": {
         "bots": "List of bot mini apps that can be launched from the attachment menu \u00bb",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "users": "Info about related users/bots"
       }
     },
@@ -135,15 +135,15 @@
       }
     },
     "AvailableEffect": {
-      "desc": "{schema}",
+      "desc": "Represents a message effect \u00bb.",
       "params": {
-        "effect_animation_id": "",
-        "effect_sticker_id": "",
-        "emoticon": "",
+        "effect_animation_id": "If set, contains the actual animated effect (TGS format \u00bb). If not set, the animated effect must be set equal to the premium animated sticker effect associated to the animated sticker specified in effect_sticker_id (always different from the preview animation, fetched thanks to the videoSize of type f as specified here \u00bb).",
+        "effect_sticker_id": "Contains the preview animation (TGS format \u00bb), used for the effect selection menu.",
+        "emoticon": "Emoji corresponding to the effect, to be used as icon for the effect if static_icon_id is not set.",
         "flags": "Flags, see TL conditional fields",
-        "id": "",
-        "premium_required": "",
-        "static_icon_id": ""
+        "id": "Unique effect ID.",
+        "premium_required": "Whether a Premium subscription is required to use this effect.",
+        "static_icon_id": "ID of the document containing the static icon (WEBP) of the effect."
       }
     },
     "AvailableReaction": {
@@ -427,40 +427,40 @@
       "params": {}
     },
     "BroadcastRevenueBalances": {
-      "desc": "{schema}",
+      "desc": "Describes channel ad revenue balances \u00bb.",
       "params": {
-        "available_balance": "",
-        "current_balance": "",
-        "overall_revenue": ""
+        "available_balance": "Amount of withdrawable cryptocurrency, out of the currently available balance (available_balance <= current_balance).",
+        "current_balance": "Amount of not-yet-withdrawn cryptocurrency.",
+        "overall_revenue": "Total amount of earned cryptocurrency."
       }
     },
     "BroadcastRevenueTransactionProceeds": {
-      "desc": "{schema}",
+      "desc": "Describes earnings from sponsored messages in a channel in some time frame, see here \u00bb for more info.",
       "params": {
-        "amount": "",
-        "from_date": "",
-        "to_date": ""
+        "amount": "Amount in the smallest unit of the cryptocurrency.",
+        "from_date": "Start unixtime for the timeframe.",
+        "to_date": "End unixtime for the timeframe."
       }
     },
     "BroadcastRevenueTransactionRefund": {
-      "desc": "{schema}",
+      "desc": "Describes a refund for failed withdrawal of ad earnings \u00bb",
       "params": {
-        "amount": "",
-        "date": "",
-        "provider": ""
+        "amount": "Amount refunded.",
+        "date": "Date of refund.",
+        "provider": "Payment provider name."
       }
     },
     "BroadcastRevenueTransactionWithdrawal": {
-      "desc": "{schema}",
+      "desc": "Describes a withdrawal of ad earnings \u00bb",
       "params": {
-        "amount": "",
-        "date": "",
-        "failed": "",
+        "amount": "Amount withdrawn",
+        "date": "Withdrawal date",
+        "failed": "Whether the withdrawal has failed",
         "flags": "Flags, see TL conditional fields",
-        "pending": "",
-        "provider": "",
-        "transaction_date": "",
-        "transaction_url": ""
+        "pending": "Whether the withdrawal is currently pending",
+        "provider": "Payment provider name",
+        "transaction_date": "If neither pending nor failed are set, the transaction was completed successfully, and this field will contain the point in time (Unix timestamp) when the withdrawal was completed successfully.",
+        "transaction_url": "If neither pending nor failed are set, the transaction was completed successfully, and this field will contain a URL where the withdrawal transaction can be viewed."
       }
     },
     "BusinessAwayMessage": {
@@ -521,12 +521,12 @@
       }
     },
     "BusinessIntro": {
-      "desc": "{schema}",
+      "desc": "Telegram Business introduction \u00bb.",
       "params": {
-        "description": "",
+        "description": "Profile introduction",
         "flags": "Flags, see TL conditional fields",
-        "sticker": "",
-        "title": ""
+        "sticker": "Optional introduction sticker.",
+        "title": "Title of the introduction message"
       }
     },
     "BusinessLocation": {
@@ -992,7 +992,7 @@
         "banned_count": "Number of users banned from the channel",
         "blocked": "Whether any anonymous admin of this supergroup was blocked: if set, you won't receive messages from anonymous group admins in discussion replies via @replies",
         "boosts_applied": "The number of boosts the current user has applied to the current supergroup.",
-        "boosts_unrestrict": "",
+        "boosts_unrestrict": "The number of boosts this supergroup requires to bypass slowmode and other restrictions, see here \u00bb for more info.",
         "bot_info": "Info about bots in the channel/supergroup",
         "call": "Livestream or group call information",
         "can_delete_channel": "Can we delete this channel?",
@@ -1000,7 +1000,7 @@
         "can_set_stickers": "Can we associate a stickerpack to the supergroup?",
         "can_set_username": "Can we set the channel's username?",
         "can_view_participants": "Can we view the participant list?",
-        "can_view_revenue": "",
+        "can_view_revenue": "If set, this user can view ad revenue statistics \u00bb for this channel.",
         "can_view_stats": "Can the user view channel/supergroup statistics",
         "chat_photo": "Channel picture",
         "default_send_as": "Default peer used for sending messages to this channel",
@@ -1025,12 +1025,12 @@
         "pending_suggestions": "A list of suggested actions for the supergroup admin, see here for more info \u00bb.",
         "pinned_msg_id": "Message ID of the last pinned message",
         "pts": "Latest PTS for this channel",
-        "reactions_limit": "",
+        "reactions_limit": "This flag may be used to impose a custom limit of unique reactions (i.e. a customizable version of appConfig.reactions_uniq_max).",
         "read_inbox_max_id": "Position up to which all incoming messages are read.",
         "read_outbox_max_id": "Position up to which all outgoing messages are read.",
         "recent_requesters": "IDs of users who requested to join recently",
         "requests_pending": "Pending join requests \u00bb",
-        "restricted_sponsored": "",
+        "restricted_sponsored": "Whether ads on this channel were disabled as specified here \u00bb (this flag is only visible to the owner of the channel).",
         "slowmode_next_send_date": "Indicates when the user will be allowed to send another message in the supergroup (unixtime)",
         "slowmode_seconds": "If specified, users in supergroups will only be able to send one message every slowmode_seconds seconds",
         "stats_dc": "If set, specifies the DC to use for fetching channel statistics",
@@ -1277,7 +1277,7 @@
         "notify_settings": "Notification settings",
         "participants": "Participant list",
         "pinned_msg_id": "Message ID of the last pinned message",
-        "reactions_limit": "",
+        "reactions_limit": "This flag may be used to impose a custom limit of unique reactions (i.e. a customizable version of appConfig.reactions_uniq_max).",
         "recent_requesters": "IDs of users who requested to join recently",
         "requests_pending": "Pending join requests \u00bb",
         "theme_emoticon": "Emoji representing a specific chat theme",
@@ -1439,7 +1439,7 @@
         "flags": "Flags, see TL conditional fields",
         "logout_tokens": "Previously stored future auth tokens, see the documentation for more info \u00bb",
         "token": "Used only by official iOS apps for Firebase auth: device token for apple push.",
-        "unknown_number": ""
+        "unknown_number": "Set this flag if there is a SIM card in the current device, but it is not possible to check whether the specified phone number matches the SIM's phone number."
       }
     },
     "Config": {
@@ -1579,7 +1579,7 @@
       "params": {
         "bots": "Whether to include all bots in this folder",
         "broadcasts": "Whether to include all channels in this folder",
-        "color": "",
+        "color": "A color ID for the folder tag associated to this folder, see here \u00bb for more info.",
         "contacts": "Whether to include all contacts in this folder",
         "emoticon": "Emoji to use as icon for the folder.",
         "exclude_archived": "Whether to exclude archived chats from this folder",
@@ -1598,7 +1598,7 @@
     "DialogFilterChatlist": {
       "desc": "A folder imported using a chat folder deep link \u00bb.",
       "params": {
-        "color": "",
+        "color": "A color ID for the folder tag associated to this folder, see here \u00bb for more info.",
         "emoticon": "Emoji to use as icon for the folder.",
         "flags": "Flags, see TL conditional fields",
         "has_my_invites": "Whether the current user has created some chat folder deep links \u00bb to share the folder as well.",
@@ -1794,18 +1794,18 @@
       }
     },
     "EmojiGroupGreeting": {
-      "desc": "{schema}",
+      "desc": "Represents an emoji category, that should be moved to the top of the list when choosing a sticker for a business introduction",
       "params": {
-        "emoticons": "",
-        "icon_emoji_id": "",
-        "title": ""
+        "emoticons": "A list of UTF-8 emojis, matching the category.",
+        "icon_emoji_id": "A single custom emoji used as preview for the category.",
+        "title": "Category name, i.e. \"Animals\", \"Flags\", \"Faces\" and so on..."
       }
     },
     "EmojiGroupPremium": {
-      "desc": "{schema}",
+      "desc": "An emoji category, used to select all Premium-only stickers (i.e. those with a Premium effect \u00bb)/Premium-only custom emojis (i.e. those where the documentAttributeCustomEmoji.free flag is not set)",
       "params": {
-        "icon_emoji_id": "",
-        "title": ""
+        "icon_emoji_id": "A single custom emoji used as preview for the category.",
+        "title": "Category name, i.e. \"Animals\", \"Flags\", \"Faces\" and so on..."
       }
     },
     "EmojiKeyword": {
@@ -1841,7 +1841,7 @@
       "desc": "Represents a list of custom emojis.",
       "params": {
         "document_id": "Custom emoji IDs",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "EmojiListNotModified": {
@@ -1983,13 +1983,13 @@
       }
     },
     "FactCheck": {
-      "desc": "{schema}",
+      "desc": "Represents a fact-check \u00bb created by an independent fact-checker.",
       "params": {
-        "country": "",
+        "country": "A two-letter ISO 3166-1 alpha-2 country code of the country for which the fact-check should be shown.",
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "need_check": "",
-        "text": ""
+        "text": "The fact-check."
       }
     },
     "FileHash": {
@@ -2446,12 +2446,12 @@
       }
     },
     "InputBusinessIntro": {
-      "desc": "{schema}",
+      "desc": "Telegram Business introduction \u00bb.",
       "params": {
-        "description": "",
+        "description": "Profile introduction",
         "flags": "Flags, see TL conditional fields",
-        "sticker": "",
-        "title": ""
+        "sticker": "Optional introduction sticker.",
+        "title": "Title of the introduction message"
       }
     },
     "InputBusinessRecipients": {
@@ -2531,15 +2531,15 @@
       }
     },
     "InputCollectiblePhone": {
-      "desc": "{schema}",
+      "desc": "Represents a phone number fragment collectible",
       "params": {
-        "phone": ""
+        "phone": "Phone number"
       }
     },
     "InputCollectibleUsername": {
-      "desc": "{schema}",
+      "desc": "Represents a username fragment collectible",
       "params": {
-        "username": ""
+        "username": "Username"
       }
     },
     "InputDialogPeer": {
@@ -2716,22 +2716,22 @@
       }
     },
     "InputInvoiceStars": {
-      "desc": "{schema}",
+      "desc": "Used to top up the current account's Telegram Stars balance.",
       "params": {
-        "option": ""
+        "option": "Top up option, obtained as described here \u00bb."
       }
     },
     "InputKeyboardButtonRequestPeer": {
-      "desc": "{schema}",
+      "desc": "Prompts the user to select and share one or more peers with the bot using messages.sendBotRequestedPeer.",
       "params": {
-        "button_id": "",
+        "button_id": "Button ID, to be passed to messages.sendBotRequestedPeer.",
         "flags": "Flags, see TL conditional fields",
-        "max_quantity": "",
-        "name_requested": "",
-        "peer_type": "",
-        "photo_requested": "",
-        "text": "",
-        "username_requested": ""
+        "max_quantity": "Maximum number of peers that can be chosen.",
+        "name_requested": "Set this flag to request the peer's name.",
+        "peer_type": "Filtering criteria to use for the peer selection list shown to the user. The list should display all existing peers of the specified type, and should also offer an option for the user to create and immediately use one or more (up to max_quantity) peers of the specified type, if needed.",
+        "photo_requested": "Set this flag to request the peer's photo (if any).",
+        "text": "Button text",
+        "username_requested": "Set this flag to request the peer's @username (if any)."
       }
     },
     "InputKeyboardButtonUrlAuth": {
@@ -3260,7 +3260,7 @@
       "params": {}
     },
     "InputPrivacyValueAllowPremium": {
-      "desc": "{schema}",
+      "desc": "Allow only users with a Premium subscription \u00bb, currently only usable for inputPrivacyKeyChatInvite.",
       "params": {}
     },
     "InputPrivacyValueAllowUsers": {
@@ -3535,12 +3535,12 @@
       }
     },
     "InputStorePaymentStars": {
-      "desc": "{schema}",
+      "desc": "Used to top up the Telegram Stars balance using the Play Store/App Store flow (official apps only).",
       "params": {
-        "amount": "",
-        "currency": "",
+        "amount": "Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).",
+        "currency": "Three-letter ISO 4217 currency code",
         "flags": "Flags, see TL conditional fields",
-        "stars": ""
+        "stars": "Amount of stars to topup"
       }
     },
     "InputTakeoutFileLocation": {
@@ -3750,7 +3750,7 @@
       "desc": "Prompts the user to select and share one or more peers with the bot using messages.sendBotRequestedPeer",
       "params": {
         "button_id": "Button ID, to be passed to messages.sendBotRequestedPeer.",
-        "max_quantity": "Maximum number of peers that can be chosne.",
+        "max_quantity": "Maximum number of peers that can be chosen.",
         "peer_type": "Filtering criteria to use for the peer selection list shown to the user. The list should display all existing peers of the specified type, and should also offer an option for the user to create and immediately use one or more (up to max_quantity) peers of the specified type, if needed.",
         "text": "Button text"
       }
@@ -3948,9 +3948,9 @@
         "date": "Date of the message",
         "edit_date": "Last edit date of this message",
         "edit_hide": "Whether the message should be shown as not modified to the user, even if an edit date is present",
-        "effect": "",
+        "effect": "A message effect that should be played as specified here \u00bb.",
         "entities": "Message entities for styled text",
-        "factcheck": "",
+        "factcheck": "Represents a fact-check \u00bb.",
         "flags": "Flags, see TL conditional fields",
         "flags2": "Flags, see TL conditional fields",
         "forwards": "Forward counter",
@@ -3967,7 +3967,7 @@
         "mentioned": "Whether we were mentioned in this message",
         "message": "The message",
         "noforwards": "Whether this message is protected and thus cannot be forwarded; clients should also prevent users from saving attached media (i.e. videos should only be streamed, photos should be kept in RAM, et cetera).",
-        "offline": "",
+        "offline": "If set, the message was sent because of a scheduled action by the message sender, for example, as away, or a greeting service message.",
         "out": "Is this an outgoing message",
         "peer_id": "Peer ID, the chat where this message was sent",
         "pinned": "Whether this message is pinned",
@@ -4203,17 +4203,17 @@
       "params": {}
     },
     "MessageActionRequestedPeer": {
-      "desc": "Contains info about one or more peers that the user shared with the bot after clicking on a keyboardButtonRequestPeer button.",
+      "desc": "Contains info about one or more peers that the we (the user) shared with the bot after clicking on a keyboardButtonRequestPeer button (service message sent by the user).",
       "params": {
         "button_id": "button_id contained in the keyboardButtonRequestPeer",
         "peers": "The shared peers"
       }
     },
     "MessageActionRequestedPeerSentMe": {
-      "desc": "{schema}",
+      "desc": "Contains info about one or more peers that the a user shared with the me (the bot) after clicking on a keyboardButtonRequestPeer button (service message received by the bot).",
       "params": {
-        "button_id": "",
-        "peers": ""
+        "button_id": "button_id contained in the keyboardButtonRequestPeer",
+        "peers": "Info about the shared peers."
       }
     },
     "MessageActionScreenshotTaken": {
@@ -5277,7 +5277,7 @@
         "access_hash": "Access hash",
         "admin_id": "User ID of the creator of the call",
         "connections": "List of endpoints the user can connect to to exchange call data",
-        "custom_parameters": "",
+        "custom_parameters": "Custom JSON-encoded call parameters to be passed to tgcalls.",
         "date": "Date of creation of the call",
         "flags": "Flags, see TL conditional fields",
         "g_a_or_b": "Parameter for key exchange",
@@ -5481,7 +5481,7 @@
         "id": "ID of the poll",
         "multiple_choice": "Whether multiple options can be chosen as answer",
         "public_voters": "Whether cast votes are publicly visible to all users (non-anonymous poll)",
-        "question": "The question of the poll",
+        "question": "The question of the poll (Premium users only, only custom emoji entities are supported).",
         "quiz": "Whether this is a quiz (with wrong and correct answers, results shown in the return type)"
       }
     },
@@ -5489,7 +5489,7 @@
       "desc": "A possible answer of a poll",
       "params": {
         "option": "The param that has to be passed to messages.sendVote.",
-        "text": "Textual representation of the answer"
+        "text": "Textual representation of the answer (Premium users only, only custom emoji entities are supported)."
       }
     },
     "PollAnswerVoters": {
@@ -5659,7 +5659,7 @@
       "params": {}
     },
     "PrivacyValueAllowPremium": {
-      "desc": "{schema}",
+      "desc": "Allow only users with a Premium subscription \u00bb, currently only usable for inputPrivacyKeyChatInvite.",
       "params": {}
     },
     "PrivacyValueAllowUsers": {
@@ -5736,21 +5736,21 @@
       "params": {}
     },
     "ReactionNotificationsFromAll": {
-      "desc": "{schema}",
+      "desc": "Receive notifications about reactions made by any user.",
       "params": {}
     },
     "ReactionNotificationsFromContacts": {
-      "desc": "{schema}",
+      "desc": "Receive notifications about reactions made only by our contacts.",
       "params": {}
     },
     "ReactionsNotifySettings": {
-      "desc": "{schema}",
+      "desc": "Reaction notification settings, see here \u00bb for more info.",
       "params": {
         "flags": "Flags, see TL conditional fields",
-        "messages_notify_from": "",
-        "show_previews": "",
-        "sound": "",
-        "stories_notify_from": ""
+        "messages_notify_from": "Message reaction notification settings, if not set completely disables notifications/updates about message reactions.",
+        "show_previews": "If false, push notifications \u00bb about message/story reactions will only be of type REACT_HIDDEN/REACT_STORY_HIDDEN, without any information about the reacted-to story or the reaction itself.",
+        "sound": "Notification sound for reactions \u00bb",
+        "stories_notify_from": "Story reaction notification settings, if not set completely disables notifications/updates about reactions to stories."
       }
     },
     "ReadParticipantDate": {
@@ -5866,33 +5866,33 @@
       }
     },
     "RequestedPeerChannel": {
-      "desc": "{schema}",
+      "desc": "Info about a channel/supergroup, shared by a user with the currently logged in bot using messages.sendBotRequestedPeer.",
       "params": {
-        "channel_id": "",
+        "channel_id": "Channel/supergroup ID.",
         "flags": "Flags, see TL conditional fields",
-        "photo": "",
-        "title": "",
-        "username": ""
+        "photo": "Channel/supergroup photo.",
+        "title": "Channel/supergroup title.",
+        "username": "Channel/supergroup username."
       }
     },
     "RequestedPeerChat": {
-      "desc": "{schema}",
+      "desc": "Info about a chat, shared by a user with the currently logged in bot using messages.sendBotRequestedPeer.",
       "params": {
-        "chat_id": "",
+        "chat_id": "Chat ID.",
         "flags": "Flags, see TL conditional fields",
-        "photo": "",
-        "title": ""
+        "photo": "Chat photo.",
+        "title": "Chat title."
       }
     },
     "RequestedPeerUser": {
-      "desc": "{schema}",
+      "desc": "Info about a user, shared by a user with the currently logged in bot using messages.sendBotRequestedPeer.",
       "params": {
-        "first_name": "",
+        "first_name": "First name.",
         "flags": "Flags, see TL conditional fields",
-        "last_name": "",
-        "photo": "",
-        "user_id": "",
-        "username": ""
+        "last_name": "Last name.",
+        "photo": "Profile photo.",
+        "user_id": "User ID.",
+        "username": "Username."
       }
     },
     "RestrictionReason": {
@@ -6297,24 +6297,24 @@
       "params": {
         "additional_info": "If set, contains additional information about the sponsored message to be shown along with the message.",
         "button_text": "Text of the sponsored message button.",
-        "can_report": "",
-        "color": "",
+        "can_report": "Whether this message can be reported as specified here \u00bb.",
+        "color": "If set, the sponsored message should use the message accent color \u00bb specified in color.",
         "entities": "Message entities for styled text",
         "flags": "Flags, see TL conditional fields",
         "message": "Sponsored message",
-        "photo": "",
+        "photo": "If set, contains a custom profile photo bubble that should be displayed for the sponsored message, like for messages sent in groups.",
         "random_id": "Message ID",
         "recommended": "Whether the message needs to be labeled as \"recommended\" instead of \"sponsored\"",
         "sponsor_info": "If set, contains additional information about the sponsor to be shown along with the message.",
-        "title": "",
-        "url": ""
+        "title": "If set, contains a custom sender name should be displayed for the sponsored message, like for messages sent in groups.",
+        "url": "If set, contains a URL to open when the user clicks on the sponsored message."
       }
     },
     "SponsoredMessageReportOption": {
-      "desc": "{schema}",
+      "desc": "A report option for a sponsored message \u00bb.",
       "params": {
-        "option": "",
-        "text": ""
+        "option": "Option identifier to pass to channels.reportSponsoredMessage.",
+        "text": "Localized description of the option."
       }
     },
     "StarsRevenueStatus": {
@@ -6322,34 +6322,34 @@
       "params": {}
     },
     "StarsTopupOption": {
-      "desc": "{schema}",
+      "desc": "Telegram Stars topup option.",
       "params": {
-        "amount": "",
-        "currency": "",
-        "extended": "",
+        "amount": "Price of the product in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).",
+        "currency": "Three-letter ISO 4217 currency code",
+        "extended": "If set, the option must only be shown in the full list of topup options.",
         "flags": "Flags, see TL conditional fields",
-        "stars": "",
-        "store_product": ""
+        "stars": "Amount of Telegram stars.",
+        "store_product": "Identifier of the store product associated with the option, official apps only."
       }
     },
     "StarsTransaction": {
-      "desc": "{schema}",
+      "desc": "Represents a Telegram Stars transaction \u00bb.",
       "params": {
-        "date": "",
-        "description": "",
+        "date": "Date of the transaction (unixtime).",
+        "description": "For transactions with bots, description of the bought product.",
         "flags": "Flags, see TL conditional fields",
-        "id": "",
-        "peer": "",
-        "photo": "",
-        "refund": "",
-        "stars": "",
-        "title": ""
+        "id": "Transaction ID.",
+        "peer": "Source of the incoming transaction, or its recipient for outgoing transactions.",
+        "photo": "For transactions with bots, photo of the bought product.",
+        "refund": "Whether this transaction is a refund.",
+        "stars": "Amount of Stars (negative for outgoing transactions).",
+        "title": "For transactions with bots, title of the bought product."
       }
     },
     "StarsTransactionPeer": {
-      "desc": "{schema}",
+      "desc": "Describes a Telegram Star transaction with another peer (usually a bot or a channel).",
       "params": {
-        "peer": ""
+        "peer": "The peer."
       }
     },
     "StarsTransactionPeerAds": {
@@ -6357,15 +6357,15 @@
       "params": {}
     },
     "StarsTransactionPeerAppStore": {
-      "desc": "{schema}",
+      "desc": "Describes a Telegram Star transaction with the App Store, used when purchasing Telegram Stars through the App Store.",
       "params": {}
     },
     "StarsTransactionPeerFragment": {
-      "desc": "{schema}",
+      "desc": "Describes a Telegram Star transaction with Fragment, used when purchasing Telegram Stars through Fragment.",
       "params": {}
     },
     "StarsTransactionPeerPlayMarket": {
-      "desc": "{schema}",
+      "desc": "Describes a Telegram Star transaction with the Play Store, used when purchasing Telegram Stars through the Play Store.",
       "params": {}
     },
     "StarsTransactionPeerPremiumBot": {
@@ -6373,7 +6373,7 @@
       "params": {}
     },
     "StarsTransactionPeerUnsupported": {
-      "desc": "{schema}",
+      "desc": "Describes a Telegram Star transaction that cannot be described using the current layer.",
       "params": {}
     },
     "StatsAbsValueAndPrev": {
@@ -6839,10 +6839,10 @@
       "params": {}
     },
     "UpdateBotBusinessConnect": {
-      "desc": "{schema}",
+      "desc": "Connecting or disconnecting a business bot or changing the connection settings will emit an updateBotBusinessConnect update to the bot, with the new settings and a connection_id that will be used by the bot to handle updates from and send messages as the user.",
       "params": {
-        "connection": "",
-        "qts": ""
+        "connection": "Business connection settings",
+        "qts": "New qts value, see updates \u00bb for more info."
       }
     },
     "UpdateBotCallbackQuery": {
@@ -6886,22 +6886,22 @@
       }
     },
     "UpdateBotDeleteBusinessMessage": {
-      "desc": "{schema}",
+      "desc": "A message was deleted in a connected business chat \u00bb.",
       "params": {
-        "connection_id": "",
-        "messages": "",
-        "peer": "",
-        "qts": ""
+        "connection_id": "Business connection ID.",
+        "messages": "IDs of the messages that were deleted.",
+        "peer": "Peer where the messages were deleted.",
+        "qts": "New qts value, see updates \u00bb for more info."
       }
     },
     "UpdateBotEditBusinessMessage": {
-      "desc": "{schema}",
+      "desc": "A message was edited in a connected business chat \u00bb.",
       "params": {
-        "connection_id": "",
+        "connection_id": "Business connection ID",
         "flags": "Flags, see TL conditional fields",
-        "message": "",
-        "qts": "",
-        "reply_to_message": ""
+        "message": "New message.",
+        "qts": "New qts value, see updates \u00bb for more info.",
+        "reply_to_message": "The message that message is replying to."
       }
     },
     "UpdateBotInlineQuery": {
@@ -6957,13 +6957,13 @@
       }
     },
     "UpdateBotNewBusinessMessage": {
-      "desc": "{schema}",
+      "desc": "A message was received via a connected business chat \u00bb.",
       "params": {
-        "connection_id": "",
+        "connection_id": "Connection ID.",
         "flags": "Flags, see TL conditional fields",
-        "message": "",
-        "qts": "",
-        "reply_to_message": ""
+        "message": "New message.",
+        "qts": "New qts value, see updates \u00bb for more info.",
+        "reply_to_message": "The message that message is replying to."
       }
     },
     "UpdateBotPrecheckoutQuery": {
@@ -7012,10 +7012,10 @@
       }
     },
     "UpdateBroadcastRevenueTransactions": {
-      "desc": "{schema}",
+      "desc": "A new channel ad revenue transaction was made, see here \u00bb for more info.",
       "params": {
-        "balances": "",
-        "peer": ""
+        "balances": "New ad revenue balance.",
+        "peer": "Channel"
       }
     },
     "UpdateBusinessBotCallbackQuery": {
@@ -7196,7 +7196,7 @@
       }
     },
     "UpdateConfig": {
-      "desc": "The server-side configuration has changed; the client should re-fetch the config using help.getConfig",
+      "desc": "The server-side configuration has changed; the client should re-fetch the config using help.getConfig and help.getAppConfig.",
       "params": {}
     },
     "UpdateContactsReset": {
@@ -7455,7 +7455,7 @@
         "date": "Authorization date",
         "device": "Name of device, for example Android",
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "location": "Location, for example USA, NY (IP=1.2.3.4)",
         "unconfirmed": "Whether the session is unconfirmed, see here \u00bb for more info."
       }
@@ -7502,11 +7502,11 @@
       }
     },
     "UpdateNewStoryReaction": {
-      "desc": "{schema}",
+      "desc": "Represents a new reaction to a story.",
       "params": {
         "peer": "",
-        "reaction": "",
-        "story_id": ""
+        "reaction": "The reaction.",
+        "story_id": "Story ID."
       }
     },
     "UpdateNotifySettings": {
@@ -7837,15 +7837,15 @@
       }
     },
     "UpdateSmsJob": {
-      "desc": "{schema}",
+      "desc": "A new SMS job was received",
       "params": {
-        "job_id": ""
+        "job_id": "SMS job ID"
       }
     },
     "UpdateStarsBalance": {
-      "desc": "{schema}",
+      "desc": "The current account's Telegram Stars balance \u00bb has changed.",
       "params": {
-        "balance": ""
+        "balance": "New balance."
       }
     },
     "UpdateStarsRevenueStatus": {
@@ -8015,7 +8015,7 @@
         "attach_menu_enabled": "Whether we installed the attachment menu web app offered by this bot",
         "bot": "Is this user a bot?",
         "bot_attach_menu": "Whether this bot offers an attachment menu web app",
-        "bot_business": "",
+        "bot_business": "Whether this bot can be connected to a user as specified here \u00bb.",
         "bot_can_edit": "Whether we can edit the profile picture, name, about text and description of this bot because we own it.",
         "bot_chat_history": "Can the bot see all messages in groups?",
         "bot_info_version": "Version of the bot_info field in userFull, incremented every time it changes",
@@ -8025,7 +8025,7 @@
         "close_friend": "Whether we marked this user as a close friend, see here \u00bb for more info",
         "color": "The user's accent color.",
         "contact": "Whether this user is a contact",
-        "contact_require_premium": "",
+        "contact_require_premium": "If set, we can only write to this user if they have already sent some messages to us, if we are subscribed to Telegram Premium, or if they're a mutual contact (user.mutual_contact).  All the secondary conditions listed above must be checked separately to verify whether we can still write to the user, even if this flag is set (i.e. a mutual contact will have this flag set even if we can still write to them, and so on...); to avoid doing these extra checks if we haven't yet cached all the required information (for example while displaying the chat list in the sharing UI) the users.getIsPremiumRequiredToContact method may be invoked instead, passing the list of users currently visible in the UI, returning a list of booleans that directly specify whether we can or cannot write to each user. To set this flag for ourselves invoke account.setGlobalPrivacySettings, setting the settings.new_noncontact_peers_require_premium flag.",
         "deleted": "Whether the account of this user was deleted",
         "emoji_status": "Emoji status",
         "fake": "If set, this user was reported by many users as a fake or scam user: be careful when interacting with them.",
@@ -8065,17 +8065,17 @@
       "desc": "Extended user info",
       "params": {
         "about": "Bio of the user",
-        "birthday": "",
+        "birthday": "Contains info about the user's birthday \u00bb.",
         "blocked": "Whether you have blocked this user",
         "blocked_my_stories_from": "Whether we've blocked this user, preventing them from seeing our stories \u00bb.",
         "bot_broadcast_admin_rights": "A suggested set of administrator rights for the bot, to be shown when adding the bot as admin to a channel, see here for more info on how to handle them \u00bb.",
         "bot_group_admin_rights": "A suggested set of administrator rights for the bot, to be shown when adding the bot as admin to a group, see here for more info on how to handle them \u00bb.",
         "bot_info": "For bots, info about the bot (bot commands, etc)",
-        "business_away_message": "",
-        "business_greeting_message": "",
-        "business_intro": "",
-        "business_location": "",
-        "business_work_hours": "",
+        "business_away_message": "Telegram Business away message \u00bb.",
+        "business_greeting_message": "Telegram Business greeting message \u00bb.",
+        "business_intro": "Specifies a custom Telegram Business profile introduction \u00bb.",
+        "business_location": "Telegram Business location \u00bb.",
+        "business_work_hours": "Telegram Business working hours \u00bb.",
         "can_pin_message": "Whether you can pin messages in the chat with this user, you can do this only for a chat with yourself",
         "common_chats_count": "Chats in common with this user",
         "contact_require_premium": "If set, we can only write to this user if they have already sent some messages to us, if we are subscribed to Telegram Premium, or if they're a mutual contact (user.mutual_contact).  All the secondary conditions listed above must be checked separately to verify whether we can still write to the user, even if this flag is set (i.e. a mutual contact will have this flag set even if we can still write to them, and so on...); to avoid doing these extra checks if we haven't yet cached all the required information (for example while displaying the chat list in the sharing UI) the users.getIsPremiumRequiredToContact method may be invoked instead, passing the list of users currently visible in the UI, returning a list of booleans that directly specify whether we can or cannot write to each user. To set this flag for ourselves invoke account.setGlobalPrivacySettings, setting the settings.new_noncontact_peers_require_premium flag.",
@@ -8097,7 +8097,7 @@
         "profile_photo": "Profile photo",
         "read_dates_private": "If set, we cannot fetch the exact read date of messages we send to this user using messages.getOutboxReadDate.  The exact read date of messages might still be unavailable for other reasons, see here \u00bb for more info.  To set this flag for ourselves invoke account.setGlobalPrivacySettings, setting the settings.hide_read_marks flag.",
         "settings": "Peer settings",
-        "sponsored_enabled": "",
+        "sponsored_enabled": "Whether ads were re-enabled for the current account (only accessible to the currently logged-in user), see here \u00bb for more info.",
         "stories": "Active stories \u00bb",
         "stories_pinned_available": "Whether this user has some pinned stories.",
         "theme_emoticon": "Emoji associated with chat theme",
@@ -8285,22 +8285,22 @@
         "embed_width": "Width of the embedded preview",
         "flags": "Flags, see TL conditional fields",
         "has_large_media": "Whether the size of the media in the preview can be changed.",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "id": "Preview ID",
         "photo": "Image representing the content",
         "site_name": "Short name of the site (e.g., Google Docs, App Store)",
         "title": "Title of the content",
-        "type": "Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else",
+        "type": "Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else, see here \u00bb for a full list.",
         "url": "URL of previewed webpage"
       }
     },
     "WebPageAttributeStickerSet": {
-      "desc": "{schema}",
+      "desc": "Contains info about a stickerset \u00bb, for a webPage preview of a stickerset deep link \u00bb (the webPage will have a type of telegram_stickerset).",
       "params": {
-        "emojis": "",
+        "emojis": "Whether this i s a custom emoji stickerset.",
         "flags": "Flags, see TL conditional fields",
-        "stickers": "",
-        "text_color": ""
+        "stickers": "A subset of the stickerset in the stickerset.",
+        "text_color": "Whether the color of this TGS custom emoji stickerset should be changed to the text color when used in messages, the accent color if used as emoji status, white on chat photos, or another appropriate color based on context."
       }
     },
     "WebPageAttributeStory": {
@@ -8434,7 +8434,7 @@
     "account.EmojiStatuses": {
       "desc": "A list of emoji statuses",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "statuses": "Emoji statuses"
       }
     },
@@ -8528,7 +8528,7 @@
     "account.SavedRingtones": {
       "desc": "A list of saved notification sounds",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "ringtones": "Saved notification sounds"
       }
     },
@@ -8552,7 +8552,7 @@
     "account.Themes": {
       "desc": "Installed themes",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "themes": "Themes"
       }
     },
@@ -8570,7 +8570,7 @@
     "account.WallPapers": {
       "desc": "Installed wallpapers",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "wallpapers": "Wallpapers"
       }
     },
@@ -8709,7 +8709,7 @@
         "flags": "Flags, see TL conditional fields",
         "length": "Length of the code that will be delivered.",
         "nonce": "On Android, the nonce to be used as described in the auth documentation \u00bb",
-        "play_integrity_nonce": "",
+        "play_integrity_nonce": "Play Integrity API nonce",
         "push_timeout": "On iOS: if a push notification with the ios_push_secret isn't received within push_timeout seconds, the next_type authentication method must be used, with auth.resendCode.",
         "receipt": "On iOS, must be compared with the receipt extracted from the received push notification."
       }
@@ -8749,16 +8749,16 @@
       }
     },
     "auth.SentCodeTypeSmsPhrase": {
-      "desc": "The code was sent via SMS as a secret phrase starting with the word specified in beginning,",
+      "desc": "The code was sent via SMS as a secret phrase starting with the word specified in beginning",
       "params": {
-        "beginning": "The secret phrase (and the SMS) starts with this word.",
+        "beginning": "If set, the secret phrase (and the SMS) starts with this word.",
         "flags": "Flags, see TL conditional fields"
       }
     },
     "auth.SentCodeTypeSmsWord": {
       "desc": "The code was sent via SMS as a secret word, starting with the letter specified in beginning",
       "params": {
-        "beginning": "The secret word in the sent SMS (which may contain multiple words) starts with this letter.",
+        "beginning": "If set, the secret word in the sent SMS (which may contain multiple words) starts with this letter.",
         "flags": "Flags, see TL conditional fields"
       }
     },
@@ -8808,18 +8808,18 @@
       }
     },
     "channels.SponsoredMessageReportResultAdsHidden": {
-      "desc": "{schema}",
+      "desc": "Sponsored messages were hidden for the user in all chats.",
       "params": {}
     },
     "channels.SponsoredMessageReportResultChooseOption": {
-      "desc": "{schema}",
+      "desc": "The user must choose a report option from the localized options available in options, and after selection, channels.reportSponsoredMessage must be invoked again, passing the option's option field to the option param of the method.",
       "params": {
-        "options": "",
-        "title": ""
+        "options": "Localized list of options.",
+        "title": "Title of the option selection popup."
       }
     },
     "channels.SponsoredMessageReportResultReported": {
-      "desc": "{schema}",
+      "desc": "The sponsored message was reported successfully.",
       "params": {}
     },
     "chatlists.ChatlistInvite": {
@@ -8945,21 +8945,21 @@
       "params": {}
     },
     "fragment.CollectibleInfo": {
-      "desc": "{schema}",
+      "desc": "Info about a fragment collectible.",
       "params": {
-        "amount": "",
-        "crypto_amount": "",
-        "crypto_currency": "",
-        "currency": "",
-        "purchase_date": "",
-        "url": ""
+        "amount": "Total price in the smallest units of the currency (integer, not float/double). For example, for a price of US$ 1.45 pass amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies).",
+        "crypto_amount": "Price, in the smallest units of the cryptocurrency.",
+        "crypto_currency": "Cryptocurrency name.",
+        "currency": "Three-letter ISO 4217 currency code for amount",
+        "purchase_date": "Purchase date (unixtime)",
+        "url": "Fragment URL with more info about the collectible"
       }
     },
     "help.AppConfig": {
       "desc": "Contains various client configuration parameters",
       "params": {
         "config": "Client configuration parameters",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "help.AppConfigNotModified": {
@@ -8984,7 +8984,7 @@
       "desc": "Name, ISO code, localized name and phone codes/patterns of all available countries",
       "params": {
         "countries": "Name, ISO code, localized name and phone codes/patterns of all available countries",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "help.CountriesListNotModified": {
@@ -9038,7 +9038,7 @@
       "desc": "Telegram passport configuration",
       "params": {
         "countries_langs": "Localization",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "help.PassportConfigNotModified": {
@@ -9050,7 +9050,7 @@
       "params": {
         "channel_min_level": "Channels can use this palette only after reaching at least the boost level specified in this field.",
         "color_id": "Palette ID.",
-        "colors": "Light mode palette. Will be empty for IDs 0 to 6 inclusive, in which case a palette containing a single color from the following colors should be used: red, orange, violet, green, cyan, blue, pink for indexes 0 to 6.",
+        "colors": "Light mode palette. Will be empty for IDs 0 to 6 inclusive, in which case a palette containing a single color from the following colors should be used: red, orange, violet, green, cyan, blue, pink for indexes 0 to 6 (i.e. the same colors used for randomized fallback message accent colors).",
         "dark_colors": "Dark mode palette. Optional, defaults to the palette in colors (or the autogenerated palette for IDs 0 to 6) if absent.",
         "flags": "Flags, see TL conditional fields",
         "group_min_level": "Supergroups can use this palette only after reaching at least the boost level specified in this field.",
@@ -9075,7 +9075,7 @@
       "desc": "Contains info about multiple color palettes \u00bb.",
       "params": {
         "colors": "Usable color palettes.",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "help.PeerColorsNotModified": {
@@ -9160,7 +9160,7 @@
     "help.TimezonesList": {
       "desc": "Timezone information that may be used elsewhere in the API, such as to set Telegram Business opening hours \u00bb.",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "timezones": "Timezones"
       }
     },
@@ -9208,7 +9208,7 @@
     "messages.AllStickers": {
       "desc": "Info about all installed stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "sets": "All stickersets"
       }
     },
@@ -9224,21 +9224,21 @@
       }
     },
     "messages.AvailableEffects": {
-      "desc": "{schema}",
+      "desc": "The full list of usable animated message effects \u00bb.",
       "params": {
-        "documents": "",
-        "effects": "",
-        "hash": "Hash for pagination, for more info click here"
+        "documents": "Documents specified in the effects constructors.",
+        "effects": "Message effects",
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "messages.AvailableEffectsNotModified": {
-      "desc": "{schema}",
+      "desc": "The full list of usable animated message effects \u00bb hasn't changed.",
       "params": {}
     },
     "messages.AvailableReactions": {
       "desc": "Animations and metadata associated with message reactions \u00bb",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "reactions": "Animations and metadata associated with message reactions \u00bb"
       }
     },
@@ -9354,11 +9354,11 @@
       }
     },
     "messages.DialogFilters": {
-      "desc": "{schema}",
+      "desc": "Folder and folder tags information",
       "params": {
-        "filters": "",
+        "filters": "Folders.",
         "flags": "Flags, see TL conditional fields",
-        "tags_enabled": ""
+        "tags_enabled": "Whether folder tags are enabled."
       }
     },
     "messages.Dialogs": {
@@ -9403,7 +9403,7 @@
       "desc": "Represents a list of emoji categories.",
       "params": {
         "groups": "A list of emoji categories.",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "messages.EmojiGroupsNotModified": {
@@ -9436,7 +9436,7 @@
     "messages.FavedStickers": {
       "desc": "Favorited stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "packs": "Emojis associated to stickers",
         "stickers": "Favorited stickers"
       }
@@ -9450,7 +9450,7 @@
       "params": {
         "count": "Total number of featured stickers",
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "premium": "Whether this is a premium stickerset",
         "sets": "Featured stickersets",
         "unread": "IDs of new featured stickersets"
@@ -9478,7 +9478,7 @@
     "messages.FoundStickerSets": {
       "desc": "Found stickersets",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "sets": "Found stickersets"
       }
     },
@@ -9577,10 +9577,10 @@
       }
     },
     "messages.MyStickers": {
-      "desc": "{schema}",
+      "desc": "The list of stickersets owned by the current account \u00bb.",
       "params": {
-        "count": "",
-        "sets": ""
+        "count": "Total number of owned stickersets.",
+        "sets": "Stickersets"
       }
     },
     "messages.PeerDialogs": {
@@ -9617,7 +9617,7 @@
     "messages.Reactions": {
       "desc": "List of message reactions",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "reactions": "Reactions"
       }
     },
@@ -9629,7 +9629,7 @@
       "desc": "Recently used stickers",
       "params": {
         "dates": "When was each sticker last used",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "packs": "Emojis associated to stickers",
         "stickers": "Recent stickers"
       }
@@ -9667,7 +9667,7 @@
       "desc": "Saved gifs",
       "params": {
         "gifs": "List of saved gifs",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "messages.SavedGifsNotModified": {
@@ -9677,7 +9677,7 @@
     "messages.SavedReactionTags": {
       "desc": "List of reaction tag \u00bb names assigned by the user.",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "tags": "Saved reaction tags."
       }
     },
@@ -9769,7 +9769,7 @@
     "messages.Stickers": {
       "desc": "Found stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "stickers": "Stickers"
       }
     },
@@ -9889,16 +9889,16 @@
       }
     },
     "payments.PaymentFormStars": {
-      "desc": "{schema}",
+      "desc": "Represents a payment form, for payments to be using Telegram Stars, see here \u00bb for more info.",
       "params": {
-        "bot_id": "",
-        "description": "",
+        "bot_id": "Bot ID.",
+        "description": "Description",
         "flags": "Flags, see TL conditional fields",
-        "form_id": "",
-        "invoice": "",
-        "photo": "",
-        "title": "",
-        "users": ""
+        "form_id": "Form ID.",
+        "invoice": "Invoice",
+        "photo": "Product photo",
+        "title": "Form title",
+        "users": "Info about users mentioned in the other fields."
       }
     },
     "payments.PaymentReceipt": {
@@ -9922,19 +9922,19 @@
       }
     },
     "payments.PaymentReceiptStars": {
-      "desc": "{schema}",
+      "desc": "Receipt for payment made using Telegram Stars.",
       "params": {
-        "bot_id": "",
+        "bot_id": "Bot ID",
         "currency": "",
-        "date": "",
-        "description": "",
+        "date": "Date of generation",
+        "description": "Description",
         "flags": "Flags, see TL conditional fields",
-        "invoice": "",
-        "photo": "",
-        "title": "",
+        "invoice": "Invoice",
+        "photo": "Product photo",
+        "title": "Title",
         "total_amount": "",
-        "transaction_id": "",
-        "users": ""
+        "transaction_id": "Transaction ID",
+        "users": "Info about users mentioned in the other fields."
       }
     },
     "payments.PaymentResult": {
@@ -9970,14 +9970,14 @@
       "params": {}
     },
     "payments.StarsStatus": {
-      "desc": "{schema}",
+      "desc": "Info about the current Telegram Star balance and transaction history \u00bb.",
       "params": {
-        "balance": "",
-        "chats": "",
+        "balance": "Current Telegram Star balance.",
+        "chats": "Chats mentioned in history.",
         "flags": "Flags, see TL conditional fields",
-        "history": "",
-        "next_offset": "",
-        "users": ""
+        "history": "List of Telegram Star transactions (partial if next_offset is set).",
+        "next_offset": "Offset to use to fetch more transactions from the transaction history using payments.getStarsTransactions.",
+        "users": "Users mentioned in history."
       }
     },
     "payments.ValidatedRequestedInfo": {
@@ -10121,25 +10121,25 @@
       }
     },
     "stats.BroadcastRevenueStats": {
-      "desc": "{schema}",
+      "desc": "Channel revenue ad statistics, see here \u00bb for more info.",
       "params": {
-        "balances": "",
-        "revenue_graph": "",
-        "top_hours_graph": "",
-        "usd_rate": ""
+        "balances": "Current balance, current withdrawable balance and overall revenue",
+        "revenue_graph": "Ad revenue graph (in the smallest unit of the cryptocurrency in which revenue is calculated)",
+        "top_hours_graph": "Ad impressions graph",
+        "usd_rate": "Current conversion rate of the cryptocurrency (not in the smallest unit) in which revenue is calculated to USD"
       }
     },
     "stats.BroadcastRevenueTransactions": {
-      "desc": "{schema}",
+      "desc": "Channel ad revenue transactions \u00bb.",
       "params": {
-        "count": "",
-        "transactions": ""
+        "count": "Total number of transactions.",
+        "transactions": "Transactions"
       }
     },
     "stats.BroadcastRevenueWithdrawalUrl": {
-      "desc": "{schema}",
+      "desc": "Contains the URL to use to withdraw channel ad revenue.",
       "params": {
-        "url": ""
+        "url": "A unique URL to a Fragment page where the user will be able to specify and submit the address of the TON wallet where the funds will be sent."
       }
     },
     "stats.BroadcastStats": {
@@ -10707,19 +10707,19 @@
     "account.GetChannelDefaultEmojiStatuses": {
       "desc": "Get a list of default suggested channel emoji statuses.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.emojiStatuses.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.emojiStatuses.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetChannelRestrictedStatusEmojis": {
       "desc": "Returns fetch the full list of custom emoji IDs \u00bb that cannot be used in channel emoji statuses \u00bb.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetChatThemes": {
       "desc": "Get all available chat themes \u00bb.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.themes.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.themes.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetConnectedBots": {
@@ -10737,25 +10737,25 @@
     "account.GetDefaultBackgroundEmojis": {
       "desc": "Get a set of suggested custom emoji stickers that can be used in an accent color pattern.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetDefaultEmojiStatuses": {
       "desc": "Get a list of default suggested emoji statuses",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.emojiStatuses.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.emojiStatuses.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetDefaultGroupPhotoEmojis": {
       "desc": "Get a set of suggested custom emoji stickers that can be used as group picture",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetDefaultProfilePhotoEmojis": {
       "desc": "Get a set of suggested custom emoji stickers that can be used as profile picture",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetGlobalPrivacySettings": {
@@ -10800,19 +10800,19 @@
       }
     },
     "account.GetReactionsNotifySettings": {
-      "desc": "{schema}",
+      "desc": "Get the current reaction notification settings \u00bb.",
       "params": {}
     },
     "account.GetRecentEmojiStatuses": {
       "desc": "Get recently used emoji statuses",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.emojiStatuses.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.emojiStatuses.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetSavedRingtones": {
       "desc": "Fetch saved notification sounds",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.savedRingtones.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.savedRingtones.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetSecureValue": {
@@ -10832,7 +10832,7 @@
       "desc": "Get installed themes",
       "params": {
         "format": "Theme format, a string that identifies the theming engines supported by the client",
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.themes.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.themes.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetTmpPassword": {
@@ -10851,7 +10851,7 @@
     "account.GetWallPapers": {
       "desc": "Returns a list of available wallpapers.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.wallPapers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the account.wallPapers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "account.GetWebAuthorizations": {
@@ -11083,9 +11083,9 @@
       }
     },
     "account.SetReactionsNotifySettings": {
-      "desc": "{schema}",
+      "desc": "Change the reaction notification settings \u00bb.",
       "params": {
-        "settings": ""
+        "settings": "New reaction notification settings."
       }
     },
     "account.ToggleConnectedBotPaused": {
@@ -11096,9 +11096,9 @@
       }
     },
     "account.ToggleSponsoredMessages": {
-      "desc": "{schema}",
+      "desc": "Disable or re-enable Telegram ads for the current Premium account.",
       "params": {
-        "enabled": ""
+        "enabled": "Enable or disable ads."
       }
     },
     "account.ToggleUsername": {
@@ -11138,10 +11138,10 @@
       }
     },
     "account.UpdateBusinessIntro": {
-      "desc": "{schema}",
+      "desc": "Set or remove the Telegram Business introduction \u00bb.",
       "params": {
         "flags": "Flags, see TL conditional fields",
-        "intro": ""
+        "intro": "Telegram Business introduction, to remove it call the method without setting this flag."
       }
     },
     "account.UpdateBusinessLocation": {
@@ -11747,13 +11747,13 @@
         "by_location": "Get geogroups",
         "check_limit": "If set and the user has reached the limit of owned public channels/supergroups/geogroups, instead of returning the channel list one of the specified errors will be returned.Useful to check if a new public channel can indeed be created, even before asking the user to enter a channel username to use in channels.checkUsername/channels.updateUsername.",
         "flags": "Flags, see TL conditional fields",
-        "for_personal": ""
+        "for_personal": "Set this flag to only fetch the full list of channels that may be passed to account.updatePersonalChannel to display them on our profile page."
       }
     },
     "channels.GetChannelRecommendations": {
       "desc": "Obtain a list of similarly themed public channels, selected based on similarities in their subscriber bases.",
       "params": {
-        "channel": "The method will return channels related to the passed channel.",
+        "channel": "The method will return channels related to the passed channel. If not set, the method will returns channels related to channels the user has joined.",
         "flags": "Flags, see TL conditional fields"
       }
     },
@@ -11903,35 +11903,35 @@
       }
     },
     "channels.ReportSponsoredMessage": {
-      "desc": "{schema}",
+      "desc": "Report a sponsored message \u00bb, see here \u00bb for more info on the full flow.",
       "params": {
-        "channel": "",
-        "option": "",
-        "random_id": ""
+        "channel": "The channel where the sponsored message can be seen.",
+        "option": "Chosen report option, initially an empty string, see here \u00bb for more info on the full flow.",
+        "random_id": "ID of the sponsored message."
       }
     },
     "channels.RestrictSponsoredMessages": {
-      "desc": "{schema}",
+      "desc": "Disable ads on the specified channel, for all users.",
       "params": {
-        "channel": "",
-        "restricted": ""
+        "channel": "The channel.",
+        "restricted": "Whether to disable or re-enable ads."
       }
     },
     "channels.SearchPosts": {
-      "desc": "{schema}",
+      "desc": "Globally search for posts from public channels \u00bb (including those we aren't a member of) containing a specific hashtag.",
       "params": {
-        "hashtag": "",
+        "hashtag": "The hashtag to search, without the # character.",
         "limit": "Maximum number of results to return, see pagination",
         "offset_id": "Offsets for pagination, for more info click here",
-        "offset_peer": "",
-        "offset_rate": ""
+        "offset_peer": "Offsets for pagination, for more info click here",
+        "offset_rate": "Initially 0, then set to the next_rate parameter of messages.messagesSlice"
       }
     },
     "channels.SetBoostsToUnblockRestrictions": {
-      "desc": "{schema}",
+      "desc": "Admins with ban_users admin rights \u00bb may allow users that apply a certain number of booosts \u00bb to the group to bypass slow mode \u00bb and other \u00bb supergroup restrictions, see here \u00bb for more info.",
       "params": {
-        "boosts": "",
-        "channel": ""
+        "boosts": "The number of required boosts (1-8, 0 to disable).",
+        "channel": "The supergroup."
       }
     },
     "channels.SetDiscussionGroup": {
@@ -12214,13 +12214,13 @@
     "contacts.GetContactIDs": {
       "desc": "Get the telegram IDs of all contacts.\nReturns an array of Telegram user IDs for all contacts (0 if a contact does not have an associated Telegram account or have hidden their account using privacy settings).",
       "params": {
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "contacts.GetContacts": {
       "desc": "Returns the current user's contact list.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note that the hash is computed using the usual algorithm, passing to the algorithm first the previously returned contacts.contacts.saved_count field, then max 100000 sorted user IDs from the contact list, including the ID of the currently logged in user if it is saved as a contact. Example: tdlib implementation."
+        "hash": "Hash used for caching, for more info click here.Note that the hash is computed using the usual algorithm, passing to the algorithm first the previously returned contacts.contacts.saved_count field, then max 100000 sorted user IDs from the contact list, including the ID of the currently logged in user if it is saved as a contact. Example: tdlib implementation."
       }
     },
     "contacts.GetLocated": {
@@ -12251,7 +12251,7 @@
         "forward_chats": "Chats to which the users often forwards messages to",
         "forward_users": "Users to which the users often forwards messages to",
         "groups": "Often-opened groups and supergroups",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "limit": "Maximum number of results to return, see pagination",
         "offset": "Offset for pagination",
         "phone_calls": "Most frequently called users"
@@ -12329,9 +12329,9 @@
       }
     },
     "fragment.GetCollectibleInfo": {
-      "desc": "{schema}",
+      "desc": "Fetch information about a fragment collectible, see here \u00bb for more info on the full flow.",
       "params": {
-        "collectible": ""
+        "collectible": "Collectible to fetch info about."
       }
     },
     "help.AcceptTermsOfService": {
@@ -12358,7 +12358,7 @@
     "help.GetAppConfig": {
       "desc": "Get app-specific configuration, see client configuration for more info on the result.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.appConfig.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.appConfig.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "help.GetAppUpdate": {
@@ -12378,7 +12378,7 @@
     "help.GetCountriesList": {
       "desc": "Get name, ISO code, localized name and phone codes/patterns of all available countries",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.countriesList.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.countriesList.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
         "lang_code": "Language code of the current user"
       }
     },
@@ -12399,19 +12399,19 @@
     "help.GetPassportConfig": {
       "desc": "Get passport configuration",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.passportConfig.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.passportConfig.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "help.GetPeerColors": {
       "desc": "Get the set of accent color palettes \u00bb that can be used for message accents.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.peerColors.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.peerColors.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "help.GetPeerProfileColors": {
       "desc": "Get the set of accent color palettes \u00bb that can be used in profile page backgrounds.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.peerColors.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.peerColors.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "help.GetPremiumPromo": {
@@ -12443,7 +12443,7 @@
     "help.GetTimezonesList": {
       "desc": "Returns timezone information that may be used elsewhere in the API, such as to set Telegram Business opening hours \u00bb.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.timezonesList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the help.timezonesList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "help.GetUserInfo": {
@@ -12605,10 +12605,10 @@
       }
     },
     "messages.DeleteFactCheck": {
-      "desc": "{schema}",
+      "desc": "Delete a fact-check from a message.",
       "params": {
-        "msg_id": "",
-        "peer": ""
+        "msg_id": "Message ID",
+        "peer": "Peer where the message was sent."
       }
     },
     "messages.DeleteHistory": {
@@ -12733,11 +12733,11 @@
       }
     },
     "messages.EditFactCheck": {
-      "desc": "{schema}",
+      "desc": "Edit/create a fact-check on a message.",
       "params": {
-        "msg_id": "",
-        "peer": "",
-        "text": ""
+        "msg_id": "Message ID",
+        "peer": "Peer where the message was sent",
+        "text": "Fact-check (maximum UTF-8 length specified in appConfig.factcheck_length_limit)."
       }
     },
     "messages.EditInlineBotMessage": {
@@ -12828,7 +12828,7 @@
     "messages.GetAllStickers": {
       "desc": "Get all installed stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.allStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.allStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetArchivedStickers": {
@@ -12850,7 +12850,7 @@
     "messages.GetAttachMenuBots": {
       "desc": "Returns installed attachment menu bot mini apps \u00bb",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the attachMenuBots.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the attachMenuBots.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetAttachedStickers": {
@@ -12860,22 +12860,22 @@
       }
     },
     "messages.GetAvailableEffects": {
-      "desc": "{schema}",
+      "desc": "Fetch the full list of usable animated message effects \u00bb.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.availableEffects.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.availableEffects.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetAvailableReactions": {
       "desc": "Obtain available message reactions \u00bb",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.availableReactions.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.availableReactions.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetBotApp": {
       "desc": "Obtain information about a direct link Mini App",
       "params": {
         "app": "Bot app information obtained from a Direct Mini App deep link \u00bb.",
-        "hash": "Hash for pagination, for more info click here"
+        "hash": "Hash used for caching, for more info click here"
       }
     },
     "messages.GetBotCallbackAnswer": {
@@ -12929,7 +12929,7 @@
     "messages.GetDefaultTagReactions": {
       "desc": "Fetch a default recommended list of saved message tag reactions.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.reactions.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.reactions.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetDhConfig": {
@@ -12953,7 +12953,7 @@
         "exclude_pinned": "Exclude pinned dialogs",
         "flags": "Flags, see TL conditional fields",
         "folder_id": "Peer folder ID, for more info click here",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "limit": "Number of list elements to be returned",
         "offset_date": "Offsets for pagination, for more info click here",
         "offset_id": "Offsets for pagination, for more info click here (top_message ID used for pagination)",
@@ -12976,9 +12976,9 @@
       }
     },
     "messages.GetEmojiGroups": {
-      "desc": "Represents a list of emoji categories, to be used when selecting custom emojis.",
+      "desc": "Represents a list of emoji categories.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetEmojiKeywords": {
@@ -13003,25 +13003,25 @@
     "messages.GetEmojiProfilePhotoGroups": {
       "desc": "Represents a list of emoji categories, to be used when selecting custom emojis to set as profile picture.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetEmojiStatusGroups": {
       "desc": "Represents a list of emoji categories, to be used when selecting custom emojis to set as custom emoji status.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetEmojiStickerGroups": {
-      "desc": "{schema}",
+      "desc": "Represents a list of emoji categories, to be used when choosing a sticker.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.emojiGroups.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetEmojiStickers": {
       "desc": "Gets the list of currently installed custom emoji stickersets.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.allStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.allStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetEmojiURL": {
@@ -13066,19 +13066,19 @@
     "messages.GetFavedStickers": {
       "desc": "Get faved stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.favedStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.favedStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetFeaturedEmojiStickers": {
       "desc": "Gets featured custom emoji stickersets.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.featuredStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.featuredStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetFeaturedStickers": {
       "desc": "Get featured stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.featuredStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.featuredStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetFullChat": {
@@ -13129,7 +13129,7 @@
     "messages.GetMaskStickers": {
       "desc": "Get installed mask stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.allStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.allStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetMessageEditData": {
@@ -13179,7 +13179,7 @@
       }
     },
     "messages.GetMyStickers": {
-      "desc": "{schema}",
+      "desc": "Fetch stickerset owned by the current user.",
       "params": {
         "limit": "Maximum number of results to return, see pagination",
         "offset_id": "Offsets for pagination, for more info click here"
@@ -13188,7 +13188,7 @@
     "messages.GetOldFeaturedStickers": {
       "desc": "Method for fetching previously featured stickers",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.featuredStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.featuredStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
         "limit": "Maximum number of results to return, see pagination",
         "offset": "Offset"
       }
@@ -13256,7 +13256,7 @@
       "desc": "Fetch (a subset or all) messages in a quick reply shortcut \u00bb.",
       "params": {
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "id": "IDs of the messages to fetch, if empty fetches all of them.",
         "shortcut_id": "Quick reply shortcut ID."
       }
@@ -13264,7 +13264,7 @@
     "messages.GetRecentLocations": {
       "desc": "Get live location history of a certain user",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "limit": "Maximum number of results to return, see pagination",
         "peer": "User"
       }
@@ -13272,7 +13272,7 @@
     "messages.GetRecentReactions": {
       "desc": "Get recently used message reactions",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.reactions.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.reactions.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
         "limit": "Maximum number of results to return, see pagination"
       }
     },
@@ -13281,14 +13281,14 @@
       "params": {
         "attached": "Get stickers recently attached to photo or video files",
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.recentStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.recentStickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetReplies": {
       "desc": "Get messages in a reply thread",
       "params": {
         "add_offset": "Offsets for pagination, for more info click here",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "limit": "Maximum number of results to return, see pagination",
         "max_id": "If a positive value was transferred, the method will return only messages with ID smaller than max_id",
         "min_id": "If a positive value was transferred, the method will return only messages with ID bigger than min_id",
@@ -13303,7 +13303,7 @@
       "params": {
         "exclude_pinned": "Exclude pinned dialogs",
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "limit": "Number of list elements to be returned",
         "offset_date": "Offsets for pagination, for more info click here",
         "offset_id": "Offsets for pagination, for more info click here (top_message ID used for pagination)",
@@ -13313,7 +13313,7 @@
     "messages.GetSavedGifs": {
       "desc": "Get saved GIFs.",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.savedGifs.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.savedGifs.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetSavedHistory": {
@@ -13333,14 +13333,14 @@
       "desc": "Fetch the full list of saved message tags created by the user.",
       "params": {
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.savedReactionTags.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.savedReactionTags.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
         "peer": "If set, returns tags only used in the specified saved message dialog."
       }
     },
     "messages.GetScheduledHistory": {
       "desc": "Get scheduled messages",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "peer": "Peer"
       }
     },
@@ -13390,7 +13390,7 @@
     "messages.GetStickerSet": {
       "desc": "Get info about a stickerset",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "stickerset": "Stickerset"
       }
     },
@@ -13398,7 +13398,7 @@
       "desc": "Get stickers by emoji",
       "params": {
         "emoticon": "The emoji",
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.stickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.stickers.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.GetSuggestedDialogFilters": {
@@ -13408,7 +13408,7 @@
     "messages.GetTopReactions": {
       "desc": "Got popular message reactions",
       "params": {
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.reactions.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.reactions.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
         "limit": "Maximum number of results to return, see pagination"
       }
     },
@@ -13441,7 +13441,7 @@
     "messages.GetWebPage": {
       "desc": "Get instant view page",
       "params": {
-        "hash": "Hash for pagination, for more info click here",
+        "hash": "Hash used for caching, for more info click here",
         "url": "URL of IV page to fetch"
       }
     },
@@ -13768,7 +13768,7 @@
         "peer": "User or chat, histories with which are searched, or (inputPeerEmpty) constructor to search in all private chats and normal groups (not channels) \u00bb. Use messages.searchGlobal to search globally in all chats, groups, supergroups and channels.",
         "q": "Text search request",
         "saved_peer_id": "Search within the saved message dialog \u00bb with this ID.",
-        "saved_reaction": "",
+        "saved_reaction": "You may search for saved messages tagged \u00bb with one or more reactions using this flag.",
         "top_msg_id": "Thread ID"
       }
     },
@@ -13776,7 +13776,7 @@
       "desc": "Look for custom emojis associated to a UTF8 emoji",
       "params": {
         "emoticon": "The emoji",
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the emojiList.hash field returned by a previous call to the method, or pass 0 if this is the first call."
       }
     },
     "messages.SearchEmojiStickerSets": {
@@ -13784,14 +13784,14 @@
       "params": {
         "exclude_featured": "Exclude featured stickersets from results",
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.foundStickerSets.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.foundStickerSets.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
         "q": "Query string"
       }
     },
     "messages.SearchGlobal": {
       "desc": "Search for messages and peers globally",
       "params": {
-        "broadcasts_only": "",
+        "broadcasts_only": "If set, only returns results from channels (used in the global channel search tab \u00bb).",
         "filter": "Global search filter",
         "flags": "Flags, see TL conditional fields",
         "folder_id": "Peer folder ID, for more info click here",
@@ -13817,7 +13817,7 @@
       "params": {
         "exclude_featured": "Exclude featured stickersets from results",
         "flags": "Flags, see TL conditional fields",
-        "hash": "Hash for pagination, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.foundStickerSets.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
+        "hash": "Hash used for caching, for more info click here.Note: the usual hash generation algorithm cannot be used in this case, please re-use the messages.foundStickerSets.hash field returned by a previous call to the method, or pass 0 if this is the first call.",
         "q": "Query string"
       }
     },
@@ -13882,7 +13882,7 @@
       "params": {
         "background": "Send message in background",
         "clear_draft": "Clear the draft",
-        "effect": "",
+        "effect": "Specifies a message effect \u00bb to use for the message.",
         "entities": "Message entities for styled text",
         "flags": "Flags, see TL conditional fields",
         "invert_media": "If set, any eventual webpage preview will be shown on top of the message instead of at the bottom.",
@@ -13905,7 +13905,7 @@
       "params": {
         "background": "Send this message as background message",
         "clear_draft": "Clear the draft field",
-        "effect": "",
+        "effect": "Specifies a message effect \u00bb to use for the message.",
         "entities": "Message entities for sending styled text",
         "flags": "Flags, see TL conditional fields",
         "invert_media": "If set, any eventual webpage preview will be shown on top of the message instead of at the bottom.",
@@ -13928,7 +13928,7 @@
       "params": {
         "background": "Send in background?",
         "clear_draft": "Whether to clear drafts",
-        "effect": "",
+        "effect": "Specifies a message effect \u00bb to use for the message.",
         "flags": "Flags, see TL conditional fields",
         "invert_media": "If set, any eventual webpage preview will be shown on top of the message instead of at the bottom.",
         "multi_media": "The medias to send: note that they must be separately uploaded using messages.uploadMedia first, using raw inputMediaUploaded* constructors is not supported.",
@@ -14036,7 +14036,7 @@
         "available_reactions": "Allowed reaction emojis",
         "flags": "Flags, see TL conditional fields",
         "peer": "Group where to apply changes",
-        "reactions_limit": ""
+        "reactions_limit": "This flag may be used to impose a custom limit of unique reactions (i.e. a customizable version of appConfig.reactions_uniq_max); this field and the other info set by the method will then be available to users in channelFull and chatFull."
       }
     },
     "messages.SetChatTheme": {
@@ -14156,9 +14156,9 @@
       }
     },
     "messages.ToggleDialogFilterTags": {
-      "desc": "{schema}",
+      "desc": "Enable or disable folder tags \u00bb.",
       "params": {
-        "enabled": ""
+        "enabled": "Enable or disable folder tags."
       }
     },
     "messages.ToggleDialogPin": {
@@ -14389,23 +14389,23 @@
       "params": {}
     },
     "payments.GetStarsStatus": {
-      "desc": "{schema}",
+      "desc": "Get the current Telegram Stars balance of the current account (with peer=inputPeerSelf), or the stars balance of the bot specified in peer.",
       "params": {
-        "peer": ""
+        "peer": "Peer of which to get the balance."
       }
     },
     "payments.GetStarsTopupOptions": {
-      "desc": "{schema}",
+      "desc": "Obtain a list of Telegram Stars topup options \u00bb as starsTopupOption constructors.",
       "params": {}
     },
     "payments.GetStarsTransactions": {
-      "desc": "{schema}",
+      "desc": "Fetch Telegram Stars transactions.",
       "params": {
         "flags": "Flags, see TL conditional fields",
         "inbound": "",
-        "offset": "",
+        "offset": "Offset for pagination, obtained from the returned next_offset, initially an empty string \u00bb.",
         "outbound": "",
-        "peer": ""
+        "peer": "Fetch the transaction history of the peer (inputPeerSelf or a bot we own)."
       }
     },
     "payments.GetStarsTransactionsByID": {
@@ -14421,10 +14421,10 @@
       }
     },
     "payments.RefundStarsCharge": {
-      "desc": "{schema}",
+      "desc": "Refund a Telegram Stars transaction, see here \u00bb for more info.",
       "params": {
-        "charge_id": "",
-        "user_id": ""
+        "charge_id": "Transaction ID.",
+        "user_id": "User to refund."
       }
     },
     "payments.SendPaymentForm": {
@@ -14440,11 +14440,11 @@
       }
     },
     "payments.SendStarsForm": {
-      "desc": "{schema}",
+      "desc": "Make a payment using Telegram Stars, see here \u00bb for more info.",
       "params": {
         "flags": "Flags, see TL conditional fields",
-        "form_id": "",
-        "invoice": ""
+        "form_id": "Payment form ID",
+        "invoice": "Invoice"
       }
     },
     "payments.ValidateRequestedInfo": {
@@ -14799,7 +14799,7 @@
     "smsjobs.GetSmsJob": {
       "desc": "Get info about an SMS job (official clients only).",
       "params": {
-        "job_id": ""
+        "job_id": "Job ID"
       }
     },
     "smsjobs.GetStatus": {
@@ -14826,26 +14826,26 @@
       }
     },
     "stats.GetBroadcastRevenueStats": {
-      "desc": "{schema}",
+      "desc": "Get channel ad revenue statistics \u00bb.",
       "params": {
-        "channel": "",
-        "dark": "",
+        "channel": "The channel",
+        "dark": "Whether to enable dark theme for graph colors",
         "flags": "Flags, see TL conditional fields"
       }
     },
     "stats.GetBroadcastRevenueTransactions": {
-      "desc": "{schema}",
+      "desc": "Fetch channel ad revenue transaction history \u00bb.",
       "params": {
-        "channel": "",
+        "channel": "The channel",
         "limit": "Maximum number of results to return, see pagination",
-        "offset": ""
+        "offset": "Offset for pagination"
       }
     },
     "stats.GetBroadcastRevenueWithdrawalUrl": {
-      "desc": "{schema}",
+      "desc": "Withdraw funds from a channel's ad revenue balance \u00bb.",
       "params": {
-        "channel": "",
-        "password": ""
+        "channel": "The channel",
+        "password": "2FA password, see here \u00bb for more info."
       }
     },
     "stats.GetBroadcastStats": {
@@ -15198,10 +15198,10 @@
       }
     },
     "stories.TogglePinnedToTop": {
-      "desc": "{schema}",
+      "desc": "Pin some stories to the top of the profile, see here \u00bb for more info.",
       "params": {
-        "id": "",
-        "peer": ""
+        "id": "IDs of the stories to pin (max stories_pinned_to_top_count_max).",
+        "peer": "Peer where to pin stories."
       }
     },
     "updates.GetChannelDifference": {
@@ -15303,7 +15303,7 @@
       }
     },
     "users.GetIsPremiumRequiredToContact": {
-      "desc": "Check whether we can write to the specified user (non-Premium users only).",
+      "desc": "Check whether we can write to the specified user (non-Premium users only), see here \u00bb for more info on the full flow.",
       "params": {
         "id": "Users to fetch info about."
       }
@@ -15357,7 +15357,7 @@
       "desc": "Media autosave settings"
     },
     "AvailableEffect": {
-      "desc": ""
+      "desc": "Describes a message effect \u00bb."
     },
     "AvailableReaction": {
       "desc": "Animations associated with a message reaction"
@@ -15369,7 +15369,7 @@
       "desc": "Basic theme settings"
     },
     "Birthday": {
-      "desc": ""
+      "desc": "Birthday information for a user."
     },
     "Bool": {
       "desc": "Boolean type."
@@ -15381,7 +15381,7 @@
       "desc": "Contains information about a direct link Mini App."
     },
     "BotBusinessConnection": {
-      "desc": ""
+      "desc": "Contains info about a bot business connection."
     },
     "BotCommand": {
       "desc": "Describes a bot command that can be used in a chat"
@@ -15402,40 +15402,40 @@
       "desc": "Indicates the action to execute when pressing the in-UI menu button for bots"
     },
     "BroadcastRevenueBalances": {
-      "desc": ""
+      "desc": "Channel ad revenue balance \u00bb information."
     },
     "BroadcastRevenueTransaction": {
-      "desc": ""
+      "desc": "A channel ad revenue \u00bb transaction."
     },
     "BusinessAwayMessage": {
-      "desc": ""
+      "desc": "Describes a Telegram Business away message, automatically sent to users writing to us when we're offline, during closing hours, while we're on vacation, or in some other custom time period when we cannot immediately answer to the user."
     },
     "BusinessAwayMessageSchedule": {
-      "desc": ""
+      "desc": "Specifies when should the Telegram Business away messages be sent."
     },
     "BusinessBotRecipients": {
-      "desc": ""
+      "desc": "Specifies the private chats that a connected business bot \u00bb may receive messages and interact with."
     },
     "BusinessChatLink": {
-      "desc": ""
+      "desc": "Contains info about a business chat deep link \u00bb created by the current account."
     },
     "BusinessGreetingMessage": {
-      "desc": ""
+      "desc": "Describes a Telegram Business greeting, automatically sent to new users writing to us in private for the first time, or after a certain inactivity period."
     },
     "BusinessIntro": {
-      "desc": ""
+      "desc": "Telegram Business introduction \u00bb."
     },
     "BusinessLocation": {
-      "desc": ""
+      "desc": "Represents the location of a Telegram Business \u00bb."
     },
     "BusinessRecipients": {
-      "desc": ""
+      "desc": "Specifies the chats that can receive Telegram Business away \u00bb and greeting \u00bb messages."
     },
     "BusinessWeeklyOpen": {
-      "desc": ""
+      "desc": "A time interval, indicating the opening hours of a Telegram Business."
     },
     "BusinessWorkHours": {
-      "desc": ""
+      "desc": "Specifies a set of Telegram Business opening hours."
     },
     "CdnConfig": {
       "desc": "Configuration for CDN file downloads."
@@ -15507,13 +15507,13 @@
       "desc": "Object contains info on API configuring parameters."
     },
     "ConnectedBot": {
-      "desc": ""
+      "desc": "Contains info about a connected business bot \u00bb."
     },
     "Contact": {
       "desc": "A contact of the current user."
     },
     "ContactBirthday": {
-      "desc": ""
+      "desc": "Birthday information of a contact."
     },
     "ContactStatus": {
       "desc": "Contact status: online / offline."
@@ -15600,7 +15600,7 @@
       "desc": "Represents a story deep link"
     },
     "FactCheck": {
-      "desc": ""
+      "desc": "Represents a fact-check \u00bb created by an independent fact-checker."
     },
     "FileHash": {
       "desc": "Hash of an uploaded file, to be checked for validity after download"
@@ -15675,22 +15675,22 @@
       "desc": "Inline bot result"
     },
     "InputBusinessAwayMessage": {
-      "desc": ""
+      "desc": "Describes a Telegram Business away message, automatically sent to users writing to us when we're offline, during closing hours, while we're on vacation, or in some other custom time period when we cannot immediately answer to the user."
     },
     "InputBusinessBotRecipients": {
-      "desc": ""
+      "desc": "Specifies the private chats that a connected business bot \u00bb may interact with."
     },
     "InputBusinessChatLink": {
-      "desc": ""
+      "desc": "Contains info about a business chat deep link \u00bb to be created by the current account."
     },
     "InputBusinessGreetingMessage": {
-      "desc": ""
+      "desc": "Describes a Telegram Business greeting, automatically sent to new users writing to us in private for the first time, or after a certain inactivity period."
     },
     "InputBusinessIntro": {
-      "desc": ""
+      "desc": "Telegram Business introduction \u00bb."
     },
     "InputBusinessRecipients": {
-      "desc": ""
+      "desc": "Specifies the chats that can receive Telegram Business away \u00bb and greeting \u00bb messages."
     },
     "InputChannel": {
       "desc": "Represents a channel"
@@ -15702,13 +15702,13 @@
       "desc": "Represents a folder"
     },
     "InputCheckPasswordSRP": {
-      "desc": "Constructors for checking the validity of a 2FA SRP password"
+      "desc": "Constructors for checking the validity of a 2FA SRP password."
     },
     "InputClientProxy": {
       "desc": "Info about an MTProxy used to connect."
     },
     "InputCollectible": {
-      "desc": ""
+      "desc": "Represents a Fragment collectible \u00bb."
     },
     "InputContact": {
       "desc": "Object defines a contact from the user's phone book."
@@ -15777,7 +15777,7 @@
       "desc": "Privacy rules indicate who can or can't do something and are specified by a PrivacyRule, and its input counterpart InputPrivacyRule."
     },
     "InputQuickReplyShortcut": {
-      "desc": ""
+      "desc": "Represents a quick reply shortcut \u00bb."
     },
     "InputReplyTo": {
       "desc": "Contains info about a message or story to reply to."
@@ -15903,7 +15903,7 @@
       "desc": "Object describes message filter."
     },
     "MissingInvitee": {
-      "desc": ""
+      "desc": "Info about why a specific user could not be invited \u00bb."
     },
     "MyBoost": {
       "desc": "Contains information about a single boost slot \u00bb."
@@ -15960,7 +15960,7 @@
       "desc": "Saved payment credentials"
     },
     "Peer": {
-      "desc": "Chat partner or group."
+      "desc": "Identifier of a private chat, basic group, group or channel (see here \u00bb for more info)."
     },
     "PeerBlocked": {
       "desc": "Info about a blocked user"
@@ -16041,7 +16041,7 @@
       "desc": "Contains info about the forwards of a story as a message to public chats and reposts by public channels."
     },
     "QuickReply": {
-      "desc": ""
+      "desc": "A quick reply shortcut."
     },
     "Reaction": {
       "desc": "Message reaction"
@@ -16050,10 +16050,10 @@
       "desc": "Number of users that reacted with a certain emoji"
     },
     "ReactionNotificationsFrom": {
-      "desc": ""
+      "desc": "Reaction notification settings"
     },
     "ReactionsNotifySettings": {
-      "desc": ""
+      "desc": "Reaction notification settings, see here \u00bb for more info."
     },
     "ReadParticipantDate": {
       "desc": "Contains info about when a certain participant has read a message"
@@ -16074,7 +16074,7 @@
       "desc": "Filtering criteria to use for the peer selection list shown to the user."
     },
     "RequestedPeer": {
-      "desc": ""
+      "desc": "Info about a peer, shared by a user with the currently logged in bot using messages.sendBotRequestedPeer."
     },
     "RestrictionReason": {
       "desc": "Restriction reason"
@@ -16089,7 +16089,7 @@
       "desc": "Represents a saved message dialog \u00bb."
     },
     "SavedReactionTag": {
-      "desc": ""
+      "desc": "Info about a saved message reaction tag \u00bb."
     },
     "SearchResultsCalendarPeriod": {
       "desc": "Information about found messages sent on a specific day, used to split the messages in messages.searchResultsCalendar constructors by days."
@@ -16140,25 +16140,25 @@
       "desc": "Shipping options"
     },
     "SmsJob": {
-      "desc": ""
+      "desc": "Info about an SMS job."
     },
     "SponsoredMessage": {
       "desc": "A sponsored message"
     },
     "SponsoredMessageReportOption": {
-      "desc": ""
+      "desc": "A report option for a sponsored message \u00bb."
     },
     "StarsRevenueStatus": {
       "desc": ""
     },
     "StarsTopupOption": {
-      "desc": ""
+      "desc": "Telegram Stars topup option."
     },
     "StarsTransaction": {
-      "desc": ""
+      "desc": "Represents a Telegram Stars transaction \u00bb."
     },
     "StarsTransactionPeer": {
-      "desc": ""
+      "desc": "Source of an incoming Telegram Star transaction, or its recipient for outgoing Telegram Star transactions."
     },
     "StatsAbsValueAndPrev": {
       "desc": "Channel statistics value pair"
@@ -16224,7 +16224,7 @@
       "desc": "Theme settings"
     },
     "Timezone": {
-      "desc": ""
+      "desc": "Timezone information."
     },
     "TopPeer": {
       "desc": "Top peer"
@@ -16302,10 +16302,10 @@
       "desc": "Contains media autosave settings"
     },
     "account.BusinessChatLinks": {
-      "desc": ""
+      "desc": "Contains info about business chat deep links \u00bb created by the current account."
     },
     "account.ConnectedBots": {
-      "desc": ""
+      "desc": "Info about currently connected business bots."
     },
     "account.ContentSettings": {
       "desc": "Sensitive content settings"
@@ -16332,7 +16332,7 @@
       "desc": "Result of an account.resetPassword request."
     },
     "account.ResolvedBusinessChatLinks": {
-      "desc": ""
+      "desc": "Contains info about a single resolved business chat deep link \u00bb."
     },
     "account.SavedRingtone": {
       "desc": "Contains information about a saved notification sound"
@@ -16398,7 +16398,7 @@
       "desc": "A list of peers that can be used to send messages in a specific group"
     },
     "channels.SponsoredMessageReportResult": {
-      "desc": ""
+      "desc": "Status of the method call used to report a sponsored message \u00bb."
     },
     "chatlists.ChatlistInvite": {
       "desc": "Info about a chat folder deep link \u00bb."
@@ -16416,7 +16416,7 @@
       "desc": "Info on users from the current user's black list."
     },
     "contacts.ContactBirthdays": {
-      "desc": ""
+      "desc": "Birthday information of our contacts."
     },
     "contacts.Contacts": {
       "desc": "Info on the current user's contact list."
@@ -16434,7 +16434,7 @@
       "desc": "Top peers"
     },
     "fragment.CollectibleInfo": {
-      "desc": ""
+      "desc": "Info about a fragment collectible."
     },
     "help.AppConfig": {
       "desc": "Contains various client configuration parameters"
@@ -16491,7 +16491,7 @@
       "desc": "Update of Telegram's terms of service"
     },
     "help.TimezonesList": {
-      "desc": ""
+      "desc": "Timezone information that may be used elsewhere in the API, such as to set Telegram Business opening hours \u00bb."
     },
     "help.UserInfo": {
       "desc": "User info"
@@ -16518,7 +16518,7 @@
       "desc": "Archived stickers"
     },
     "messages.AvailableEffects": {
-      "desc": ""
+      "desc": "Full list of usable animated message effects \u00bb."
     },
     "messages.AvailableReactions": {
       "desc": "Animations and metadata associated with message reactions \u00bb"
@@ -16551,7 +16551,7 @@
       "desc": "Contains Diffie-Hellman key generation protocol parameters."
     },
     "messages.DialogFilters": {
-      "desc": ""
+      "desc": "Folder information"
     },
     "messages.Dialogs": {
       "desc": "Object contains a list of chats with messages and auxiliary data."
@@ -16593,7 +16593,7 @@
       "desc": "Inactive chat list"
     },
     "messages.InvitedUsers": {
-      "desc": ""
+      "desc": "Contains info about successfully or unsuccessfully invited \u00bb users."
     },
     "messages.MessageEditData": {
       "desc": "Message edit data for media"
@@ -16608,7 +16608,7 @@
       "desc": "Object contains information on list of messages with auxiliary data."
     },
     "messages.MyStickers": {
-      "desc": ""
+      "desc": "The list of stickersets owned by the current account \u00bb."
     },
     "messages.PeerDialogs": {
       "desc": "List of dialogs"
@@ -16617,7 +16617,7 @@
       "desc": "Peer settings"
     },
     "messages.QuickReplies": {
-      "desc": ""
+      "desc": "Info about quick reply shortcuts \u00bb."
     },
     "messages.Reactions": {
       "desc": "A set of message reactions"
@@ -16632,7 +16632,7 @@
       "desc": "Saved GIFs"
     },
     "messages.SavedReactionTags": {
-      "desc": ""
+      "desc": "List of reaction tag \u00bb names assigned by the user."
     },
     "messages.SearchCounter": {
       "desc": "Number of results that would be returned by a search"
@@ -16704,7 +16704,7 @@
       "desc": ""
     },
     "payments.StarsStatus": {
-      "desc": ""
+      "desc": "Info about the current Telegram Star balance and transaction history \u00bb."
     },
     "payments.ValidatedRequestedInfo": {
       "desc": "Validated requested info"
@@ -16746,19 +16746,19 @@
       "desc": "A list of peers we are currently boosting, and how many boost slots we have left."
     },
     "smsjobs.EligibilityToJoin": {
-      "desc": ""
+      "desc": "SMS jobs eligibility"
     },
     "smsjobs.Status": {
-      "desc": ""
+      "desc": "Status"
     },
     "stats.BroadcastRevenueStats": {
-      "desc": ""
+      "desc": "Channel revenue ad statistics, see here \u00bb for more info."
     },
     "stats.BroadcastRevenueTransactions": {
-      "desc": ""
+      "desc": "Channel ad revenue transactions \u00bb."
     },
     "stats.BroadcastRevenueWithdrawalUrl": {
-      "desc": ""
+      "desc": "Contains the URL to use to withdraw channel ad revenue."
     },
     "stats.BroadcastStats": {
       "desc": "Channel statistics"
