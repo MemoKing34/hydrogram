@@ -21,14 +21,14 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from pathlib import Path
+from pathlib3x import Path
 
 import httpx
 from git import Repo, exc
 
 # Config variables
-ORIGIN_REPO = "pyrogram/pyrogram"
-ORIGIN_BRANCH = "master"
+ORIGIN_REPO = "KurimuzonAkuma/pyrogram"
+ORIGIN_BRANCH = "dev"
 
 HYDRO_ROOT_DIR = Path.cwd().absolute()
 if HYDRO_ROOT_DIR.name == "dev_tools":
